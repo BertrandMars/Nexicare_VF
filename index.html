@@ -233,6 +233,92 @@ footer{background:var(--dark);padding:18px 60px;display:flex;justify-content:spa
   .mods5,.feats,.cibles-grid,.mom-grid{grid-template-columns:1fr;}
   .prob-cards{grid-template-columns:1fr;}.btns{flex-direction:column;}
 }
+
+/* ── MODAL CONTACT ──────────────────────────────── */
+.modal-overlay{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(8,14,26,.85);
+  backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s ease;
+  padding:20px;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{
+  background:#0D1F3C;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;
+  padding:40px;
+  width:100%;max-width:520px;
+  box-shadow:0 40px 100px rgba(0,0,0,.6);
+  transform:translateY(20px);
+  transition:transform .3s ease;
+  position:relative;
+}
+.modal-overlay.open .modal{transform:translateY(0);}
+.modal-close{
+  position:absolute;top:16px;right:18px;
+  width:30px;height:30px;border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:rgba(255,255,255,.5);
+  transition:background .2s;
+}
+.modal-close:hover{background:rgba(255,255,255,.15);color:#fff;}
+.modal-title{
+  font-family:"Fraunces",serif;font-size:22px;font-weight:700;
+  color:#fff;margin-bottom:6px;
+}
+.modal-sub{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:26px;line-height:1.5;}
+.modal-field{margin-bottom:14px;}
+.modal-field label{
+  display:block;font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.4);text-transform:uppercase;
+  letter-spacing:.1em;margin-bottom:6px;
+}
+.modal-field input,
+.modal-field textarea{
+  width:100%;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:9px;
+  padding:11px 14px;
+  font-size:14px;
+  color:#fff;
+  font-family:"Instrument Sans",sans-serif;
+  outline:none;
+  transition:border-color .2s;
+  resize:none;
+}
+.modal-field input:focus,
+.modal-field textarea:focus{
+  border-color:rgba(14,124,123,.6);
+}
+.modal-field input::placeholder,
+.modal-field textarea::placeholder{color:rgba(255,255,255,.2);}
+.modal-send{
+  width:100%;padding:13px;border-radius:9px;
+  background:#E07B39;color:#fff;
+  font-size:14px;font-weight:600;
+  border:none;cursor:pointer;
+  font-family:"Instrument Sans",sans-serif;
+  transition:background .2s,transform .15s;
+  margin-top:4px;
+}
+.modal-send:hover{background:#C96B2A;transform:translateY(-1px);}
+.modal-send:disabled{background:#666;cursor:not-allowed;transform:none;}
+.modal-success{
+  display:none;text-align:center;padding:20px 0;
+}
+.modal-success-icon{font-size:48px;margin-bottom:14px;}
+.modal-success-txt{font-size:16px;color:#fff;font-weight:600;margin-bottom:6px;}
+.modal-success-sub{font-size:13px;color:rgba(255,255,255,.45);}
+.modal-footer-note{
+  font-size:11px;color:rgba(255,255,255,.25);
+  text-align:center;margin-top:14px;
+}
 </style>
 </head>
 <body>
@@ -494,14 +580,14 @@ footer{background:var(--dark);padding:18px 60px;display:flex;justify-content:spa
     <h2 class="ch">Ce secteur attend<br>cette solution <em>depuis vingt ans.</em></h2>
     <p class="cs">Investisseur, partenaire groupe, directeur de structure — parlons-nous. 30 minutes suffisent pour voir si c'est pertinent.</p>
     <div class="team-row">
-      <div class="tf bm"><div class="tf-av" style="background:linear-gradient(135deg,#0E7C7B,#0A5C5C)">BM</div><div class="tf-name">Bertrand Mars</div><div class="tf-role">Co-fondateur · Directeur Général<br>15 ans terrain médico-social</div><a href="mailto:bertrand@stræm.com" class="tf-mail">bertrand@stræm.com</a></div>
+      <div class="tf bm"><div class="tf-av" style="background:linear-gradient(135deg,#0E7C7B,#0A5C5C)">BM</div><div class="tf-name">Bertrand Mars</div><div class="tf-role">Co-fondateur · Directeur Général<br>15 ans terrain médico-social</div><a href="#" onclick="openModal();return false;" class="tf-mail">bertrand.mars@nexicare.fr</a></div>
       <div class="tf ol"><div class="tf-av" style="background:linear-gradient(135deg,#E07B39,#B55A1C)">OL</div><div class="tf-name">Olivier Lefebvre</div><div class="tf-role">Co-fondateur · Expert Métier<br>Directeur EHPAD · ANAP · FédéCRT</div><a href="mailto:olefebvrepro@gmail.com" class="tf-mail" style="color:#E07B39;border-color:rgba(224,123,57,.3)">olefebvrepro@gmail.com</a></div>
       <div class="tf ad"><div class="tf-av" style="background:linear-gradient(135deg,#6366F1,#4338CA)">AD</div><div class="tf-name">Arnaud Descharne</div><div class="tf-role">Co-fondateur · CFO<br>Président Payelo · Finance & Fintech</div><a href="mailto:arnaud.descharne@payelo.io" class="tf-mail" style="color:#818CF8;border-color:rgba(129,140,248,.3)">arnaud.descharne@payelo.io</a></div>
     </div>
     <div class="btns">
       <a href="https://calendly.com/nexicare/30min" target="_blank" class="btn btn-p">📅 Prendre rendez-vous →</a>
       <a href="https://bertrandmars.github.io/NexiCare_CDC/" target="_blank" class="btn btn-s">📄 Cahier des charges techniques</a>
-      <a href="mailto:bertrand@xn--strm-xoa.com?subject=NexiCare%20-%20Prise%20de%20contact&cc=olefebvrepro%40gmail.com,arnaud.descharne%40payelo.io" class="btn btn-s">✉️ Nous écrire</a>
+      <button onclick="openModal()" class="btn btn-s" style="cursor:pointer;border:1px solid rgba(255,255,255,.18);">✉️ Nous écrire</button>
     </div>
   </div>
 </section>
@@ -513,6 +599,86 @@ const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>60));
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);}});},{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+<!-- ══ MODAL CONTACT ════════════════════════════ -->
+<div class="modal-overlay" id="contactModal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-form-wrap">
+      <div class="modal-title">Écrire à NexiCare</div>
+      <div class="modal-sub">Votre message sera adressé directement à Bertrand Mars, co-fondateur.</div>
+      <div class="modal-field">
+        <label>Votre nom</label>
+        <input type="text" id="m-name" placeholder="Prénom Nom" autocomplete="name">
+      </div>
+      <div class="modal-field">
+        <label>Votre email</label>
+        <input type="email" id="m-email" placeholder="vous@structure.fr" autocomplete="email">
+      </div>
+      <div class="modal-field">
+        <label>Votre message</label>
+        <textarea id="m-msg" rows="6" placeholder="Décrivez votre projet, votre structure, vos questions…"></textarea>
+      </div>
+      <button class="modal-send" id="m-send-btn" onclick="sendMail()">Envoyer le message →</button>
+      <div class="modal-footer-note">En cliquant sur Envoyer, votre client mail s'ouvrira avec le message pré-rempli.</div>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="modal-success-icon">✅</div>
+      <div class="modal-success-txt">Message prêt à envoyer !</div>
+      <div class="modal-success-sub">Votre client mail s'est ouvert avec le message pré-rempli.<br>Il ne reste plus qu'à cliquer sur Envoyer.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){
+  document.getElementById('contactModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('contactModal').classList.remove('open');
+  document.body.style.overflow='';
+  // Reset form
+  setTimeout(()=>{
+    document.getElementById('modal-form-wrap').style.display='block';
+    document.getElementById('modal-success').style.display='none';
+    document.getElementById('m-name').value='';
+    document.getElementById('m-email').value='';
+    document.getElementById('m-msg').value='';
+  },300);
+}
+function closeModalOutside(e){
+  if(e.target===document.getElementById('contactModal')) closeModal();
+}
+function sendMail(){
+  const name  = document.getElementById('m-name').value.trim();
+  const email = document.getElementById('m-email').value.trim();
+  const msg   = document.getElementById('m-msg').value.trim();
+
+  if(!name || !email || !msg){
+    alert("Merci de compléter tous les champs avant d'envoyer.");
+    return;
+  }
+
+  const to      = 'bertrand.mars@nexicare.fr';
+  const subject = encodeURIComponent('NexiCare — Prise de contact');
+  const body    = encodeURIComponent(
+    'Bonjour Bertrand,\n\n' + msg +
+    '\n\n---\n' + name + '\n' + email
+  );
+
+  window.location.href = 'mailto:' + to
+    + '?subject=' + subject
+    + '&body=' + body;
+
+  document.getElementById('modal-form-wrap').style.display='none';
+  document.getElementById('modal-success').style.display='block';
+}
+// Fermer avec Échap
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') closeModal();
+});
 </script>
 </body>
 </html>
