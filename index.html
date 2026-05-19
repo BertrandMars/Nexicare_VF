@@ -871,50 +871,89 @@ body {
 ══════════════════════════════════════ */
 #s13 { background: var(--white); }
 
-.biz-rows { display: flex; flex-direction: column; gap: 20px; margin-top: 48px; }
-.biz-row {
+/* ── MODÈLE ÉCONOMIQUE ── */
+.biz-cards {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 0;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 2px 16px rgba(26,60,110,.07);
-  transition: box-shadow .2s;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 48px;
 }
-.biz-row:hover { box-shadow: 0 6px 28px rgba(26,60,110,.14); }
-.biz-key {
+.biz-card {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(26,60,110,.1);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: var(--white);
-  padding: 28px 16px;
-  text-align: center;
-  line-height: 1.3;
+  flex-direction: column;
+  transition: transform .2s, box-shadow .2s;
+}
+.biz-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,60,110,.16); }
+
+.biz-card-head {
+  padding: 28px 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .bk-1 { background: var(--navy); }
 .bk-2 { background: var(--teal); }
 .bk-3 { background: var(--orange); }
-.biz-val {
-  background: var(--light);
-  padding: 24px 28px;
-  font-size: 14.5px;
-  color: #3a4060;
-  line-height: 1.75;
-  font-weight: 300;
-  display: flex;
-  align-items: center;
+
+.biz-card-icon { font-size: 28px; }
+.biz-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
 }
-.biz-val strong { font-weight: 600; color: var(--navy); }
+.biz-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.biz-card-body {
+  background: var(--white);
+  padding: 24px 28px;
+  flex: 1;
+}
+.biz-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(26,60,110,.06);
+}
+.biz-item:last-child { border-bottom: none; padding-bottom: 0; }
+.biz-item:first-child { padding-top: 0; }
+.biz-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.bk-1 ~ .biz-card-body .biz-dot { background: var(--navy); }
+.bk-2 ~ .biz-card-body .biz-dot { background: var(--teal); }
+.bk-3 ~ .biz-card-body .biz-dot { background: var(--orange); }
+.dot-navy   { background: var(--navy); }
+.dot-teal   { background: var(--teal); }
+.dot-orange { background: var(--orange); }
+
+.biz-item-text {
+  font-size: 14px;
+  color: #3a4060;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.biz-item-text strong { font-weight: 600; color: var(--navy); }
 
 .biz-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 36px;
+  margin-top: 32px;
 }
 .biz-chip {
   display: inline-flex;
@@ -1892,26 +1931,96 @@ body {
   <div class="section-eyebrow">Modèle économique</div>
   <h2 class="slide-h2">Quoi, à qui, <em>comment.</em></h2>
 
-  <div class="biz-rows">
-    <div class="biz-row">
-      <div class="biz-key bk-1">QUOI</div>
-      <div class="biz-val">Abonnement SaaS mensuel · <strong>Tous collaborateurs inclus</strong> sans surfacturation par utilisateur · Modules additionnels à la carte · Set-up &amp; formation one-shot</div>
+  <div class="biz-cards">
+
+    <!-- QUOI -->
+    <div class="biz-card">
+      <div class="biz-card-head bk-1">
+        <div class="biz-card-icon">📦</div>
+        <div class="biz-card-label">Le produit</div>
+        <div class="biz-card-title">Quoi</div>
+      </div>
+      <div class="biz-card-body">
+        <div class="biz-item">
+          <div class="biz-dot dot-navy"></div>
+          <div class="biz-item-text">Abonnement <strong>SaaS mensuel</strong></div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-navy"></div>
+          <div class="biz-item-text"><strong>Tous collaborateurs inclus</strong> — zéro surfacturation par utilisateur</div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-navy"></div>
+          <div class="biz-item-text">Modules additionnels <strong>à la carte</strong></div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-navy"></div>
+          <div class="biz-item-text">Set-up &amp; formation <strong>one-shot</strong> à l'entrée</div>
+        </div>
+      </div>
     </div>
-    <div class="biz-row">
-      <div class="biz-key bk-2">À QUI</div>
-      <div class="biz-val">Directeurs et DG de structures médico-sociales, sociales et sanitaires <strong>(EHPAD, SAD, HAD, FAM)</strong> · Groupes multi-sites · Réseaux territoriaux</div>
+
+    <!-- À QUI -->
+    <div class="biz-card">
+      <div class="biz-card-head bk-2">
+        <div class="biz-card-icon">🎯</div>
+        <div class="biz-card-label">Les cibles</div>
+        <div class="biz-card-title">À qui</div>
+      </div>
+      <div class="biz-card-body">
+        <div class="biz-item">
+          <div class="biz-dot dot-teal"></div>
+          <div class="biz-item-text">Directeurs &amp; DG de structures <strong>EHPAD, SAD, HAD, FAM</strong></div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-teal"></div>
+          <div class="biz-item-text">Structures <strong>médico-sociales</strong>, sociales et sanitaires</div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-teal"></div>
+          <div class="biz-item-text"><strong>Groupes multi-sites</strong> avec tarif dégressif</div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-teal"></div>
+          <div class="biz-item-text"><strong>Réseaux territoriaux</strong> — pilotage centralisé</div>
+        </div>
+      </div>
     </div>
-    <div class="biz-row">
-      <div class="biz-key bk-3">COMMENT</div>
-      <div class="biz-val">Abonnement socle : <strong>359 à 459 € HT/mois</strong> selon la taille · Modules supplémentaires : 49 à 99 € HT/mois · Groupes : tarif dégressif jusqu'à -40% · Set-up : facturation one-shot à l'entrée</div>
+
+    <!-- COMMENT -->
+    <div class="biz-card">
+      <div class="biz-card-head bk-3">
+        <div class="biz-card-icon">💶</div>
+        <div class="biz-card-label">La tarification</div>
+        <div class="biz-card-title">Comment</div>
+      </div>
+      <div class="biz-card-body">
+        <div class="biz-item">
+          <div class="biz-dot dot-orange"></div>
+          <div class="biz-item-text">Socle : <strong>359 à 459 € HT/mois</strong> selon la taille</div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-orange"></div>
+          <div class="biz-item-text">Modules sup. : <strong>49 à 99 € HT/mois</strong> par module</div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-orange"></div>
+          <div class="biz-item-text">Groupes : tarif dégressif <strong>jusqu'à −40%</strong></div>
+        </div>
+        <div class="biz-item">
+          <div class="biz-dot dot-orange"></div>
+          <div class="biz-item-text">Beta gratuit <strong>6 mois</strong> pour les partenaires fondateurs</div>
+        </div>
+      </div>
     </div>
+
   </div>
 
   <div class="biz-chips">
     <div class="biz-chip">✓ Zéro facturation par utilisateur — toute l'équipe accède</div>
-    <div class="biz-chip">✓ Beta gratuit 6 mois pour les partenaires fondateurs</div>
     <div class="biz-chip">✓ Engagement annuel — récurrence garantie</div>
     <div class="biz-chip">✓ ROI mesurable dès le premier mois d'utilisation</div>
+    <div class="biz-chip">✓ ARPU moyen : 401 € HT/mois tous utilisateurs inclus</div>
   </div>
 </section>
 
